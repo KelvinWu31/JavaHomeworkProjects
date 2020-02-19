@@ -1,0 +1,22 @@
+
+public class Artist {
+	private String name; 
+	private Artist next; 
+		
+public Artist (String name) { 
+		this.name = name; 
+	}
+
+} // end of class 
+
+public class TopStreamingArtists {
+	private Artist first; 
+
+
+public void TopStreamingArtist() { 
+		first  = null; 
+}
+public boolean isEmpty() { 
+	return (first == null); 
+}
+} 

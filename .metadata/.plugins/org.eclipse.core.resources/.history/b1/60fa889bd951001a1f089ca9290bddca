@@ -1,0 +1,101 @@
+import java.util.*;
+import java.io.*;
+
+class Artist {
+	 String name; 
+	 Artist next; 
+		
+public Artist (String name) { 
+		this.name = name; 
+	}
+
+} 
+class TopStreamingArtists {
+	private Artist first; 
+
+public void TopStreamingArtist() { 
+		first  = null; 
+		
+		
+}
+public boolean isEmpty() { 
+	return (first == null); 
+}
+
+public void insert (String name) { 
+	Artist newNode = new Artist(name); 
+	if (isEmpty()) {
+		first = newNode; 
+	}
+	else { 
+		newNode.next = first; 
+		first = newNode; 
+	}
+}
+
+public void SortNames() { 
+	boolean flag = true; 
+	
+	while (flag) {
+		flag = false; 
+		
+		Artist current = first; 
+		Artist currentNext = current.next; 
+		Artist currentPrev = null; 
+		
+		while (currentNext != null) { 
+			if(current.compareToIgnoreCase(currentNext) >0) { 
+				Artist temp = current; 
+				Artist tempNextNext = currentNext.next; 
+				current.next = temp; 
+				currentNext = temp; 
+				currentNext.next = tempNextNext; 
+				
+				if(currentPrev != null) {
+					first = current; 
+				}else {
+					currentPrev.next = current; 
+				}
+				flag = true; 
+				
+			} // end of if statement
+				
+			currentPrev = current; 
+			current = current.next; 
+			currentNext = current.next; 
+		} // end of while loop
+	} // end of flag while loop
+} // end of sortNames
+
+} // end of TopStreamingArtists; 
+
+
+
+
+
+public class StreamingArtist {
+
+	public static void main(String[] args) throws Exception {
+		 
+		  TopStreamingArtists artistNames = new TopStreamingArtists(); 
+		 
+		  String [][] myList = new String [74][1]; 
+		    Scanner scanner = new Scanner(new File("USArtist.txt")); 
+		    scanner.useDelimiter(",");
+		   
+		    while(scanner.hasNext()){ 
+		      for (int row = 0; row < myList.length; row++) {
+		        for(int col = 0; col < myList[row].length; col++) {    
+		          myList[row][col] = scanner.next();
+		          artistNames.insert(myList[row][col]);
+		    //      System.out.print(myList[row][col] + " ");         
+		        } //end of j loop
+		      } //end of i loop
+		    } // end of while loop
+		    
+		
+		    scanner.close();
+		
+	} // end of main method
+
+} // end of public class 

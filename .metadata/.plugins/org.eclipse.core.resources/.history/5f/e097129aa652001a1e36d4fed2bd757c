@@ -1,0 +1,71 @@
+import java.util.*;
+import java.io.*;
+import java.lang.String;
+
+class Artist {
+	 String name; 
+	 Artist next; 
+		
+public Artist (String name) { 
+		this.name = name; 
+}
+} 
+class TopStreamingArtists {
+	private Artist first; 
+
+public void TopStreamingArtist() { 
+		first  = null; 		
+}
+
+public boolean isEmpty() { 
+	return (first == null); 
+}
+
+public void insert (String name) { 
+	Artist newNode = new Artist(name); 
+	if (isEmpty()) {
+		first = newNode; 
+	}
+	else { 
+		newNode.next = first; 
+		first = newNode; 
+	}
+} // end of insert 
+
+} // end of TopStreamingArtists;
+
+public class StreamingArtist {
+
+	public static void main(String[] args) throws Exception {
+		
+		
+		  ArrayList<String> unsortedArtist = new ArrayList<String>(); 
+		  
+		  TopStreamingArtists artistNames = new TopStreamingArtists(); 
+		 
+		  String [][] myList = new String [74][1]; 
+		    Scanner scanner = new Scanner(new File("USArtist.txt")); 
+		    scanner.useDelimiter(",");
+		   
+		    while(scanner.hasNext()){ 
+		      for (int row = 0; row < myList.length; row++) {
+		        for(int col = 0; col < myList[row].length; col++) {    
+		          myList[row][col] = scanner.next();
+		         // artistNames.insert(myList[row][col]);
+		          unsortedArtist.add(myList[row][col]);
+		       //   System.out.print(myList[row][col]);               
+		        } //end of col loop
+		      } //end of row loop
+		    } // end of while loop
+		    
+		    Collections.sort(unsortedArtist); 
+	          for(String counter: unsortedArtist) { 
+	        	  System.out.println(counter); 
+	          }
+	          
+		    
+		
+		    scanner.close();
+	} // end of main method
+}
+ // end of public class 

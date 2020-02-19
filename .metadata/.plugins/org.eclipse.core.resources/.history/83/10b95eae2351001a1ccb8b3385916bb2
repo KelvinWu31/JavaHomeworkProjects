@@ -1,0 +1,11 @@
+public class TopStreamingArtists {
+	private Artist first; 
+
+public void TopStreamingArtist() { 
+		first  = null; 
+		
+}
+public boolean isEmpty() { 
+	return (first == null); 
+}
+} 

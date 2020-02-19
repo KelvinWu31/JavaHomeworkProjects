@@ -1,0 +1,82 @@
+/*
+ * Name: Kelvin Wu
+ * CISC 3130 TY2 
+ * 02/18/2020
+ * Assignment #1
+ */
+
+
+
+import java.util.*;
+import java.io.*;
+import java.lang.String;
+
+class Artist {
+	 String name; 
+	 Artist next; 
+		
+public Artist (String name) { 
+		this.name = name; 
+}
+} 
+class TopStreamingArtists {
+	private Artist first; 
+
+public void TopStreamingArtist() { 
+		first  = null; 		
+}
+
+public boolean isEmpty() { 
+	return (first == null); 
+}
+
+public void insert (String name) { 
+	Artist newNode = new Artist(name); 
+	if (isEmpty()) {
+		first = newNode; 
+	}
+	else { 
+		newNode.next = first; 
+		first = newNode; 
+	}
+} // end of insert 
+
+} // end of TopStreamingArtists;
+
+public class StreamingArtist {
+
+	public static void main(String[] args) throws Exception {	
+		
+		  ArrayList<String> unsortedArtist = new ArrayList<String>(); // created an ArrayList of strings to sort the name of the artist 
+		  
+		  TopStreamingArtists artistNames = new TopStreamingArtists(); // created object of type TopStreamingArtists to store the sorted artist names
+		 
+		  String [][] myList = new String [74][1];                     //using an 2d array allows me to read the file and temporarily store it
+		    Scanner scanner = new Scanner(new File("USArtist.txt"));  // called the scanner object to read in the .txt file 
+		    scanner.useDelimiter(" ");                              // using the scanner's useDelimiter method allows me to seperate the artist names by comma
+		   
+		    while(scanner.hasNext()){                               // while loop is used to  keep reading from the file while there is still data 
+		      for (int row = 0; row < myList.length; row++) {       // using a double nested loop, I can read the file into the 2d array and keeps looping 
+		        for(int col = 0; col < myList[row].length; col++) {  // until it runs out of the array  
+		          myList[row][col] = scanner.next();                  // scanner.next(); holds the data and it's being read into the array of myList
+		          unsortedArtist.add(myList[row][col]);              // the array element is then added to the ArrayList of unsortedArtist for further processing
+		          System.out.print(myList[row][col]);               
+		        } //end of col loop
+		      } //end of row loop
+		    } // end of while loop
+		    
+		    Collections.sort(unsortedArtist);                         // Calling the sort Method of Collections, the ArrayList is then sorted alphabetically.
+	          
+		    for(String counter: unsortedArtist) {                    // ArrayList of unsortedArtist is then printed out. 
+	        	  System.out.println(counter);                     
+	          }  
+		    
+		    while(unsortedArtist!= null) {
+		    	artistNames.insert(unsortedArtist); 
+		    } 
+		    
+		
+		    scanner.close();
+	} // end of main method
+}
+ // end of public class 

@@ -1,0 +1,1 @@
+19 Feb 2020 22:44:09 GMT: Log 'EclipseCompiler.txt' opened: 19 Feb 2020 22:44:09 GMT with name C:\Users\kelvi\eclipse-workspace\StreamingArtist\src\EclipseCompiler.txt

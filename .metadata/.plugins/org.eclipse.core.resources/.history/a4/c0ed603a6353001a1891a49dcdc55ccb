@@ -1,0 +1,90 @@
+/* Name: Kelvin Wu
+ * CISC 3130 TY2 
+ * 02/18/2020
+ * Assignment #1
+ * 
+ * Program Description: This Java Program was intended to read in a .txt file of artist names and sort them by alphabetical order
+ * through the ArrayList and calling the collections' sort and reverse alphabetizing them. The ArrayList is then implemented into 
+ * a Linked List by a insert method inside TopStreamingArtists backwards.
+ * 
+ * Errors:
+ * - I had problems from the very beginning from reading the file to the actual output not showing up when I print it from the ArrayList
+ * - Due to this Error, I had to manually separate the artist names from the file and could only read 75 artist names from the US Play List.
+ * 
+ * Output:
+ * Exception in thread "main" java.util.NoSuchElementException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:937)
+	at java.base/java.util.Scanner.next(Scanner.java:1478)
+	at StreamingArtist.main(StreamingArtist.java:58) 
+ * 
+ */
+import java.util.*;
+import java.io.*;
+import java.lang.String;
+
+class Artist {                             //creating an class of type Artist objects
+	 String name; 
+	 Artist next;                         // creating a null pointer inside artist and extends to TopStreamingArtists
+		
+public Artist (String name) {             // Artist's Constructor that accepts an parameter of String
+		this.name = name;                 // implements the parameter's name into the Artist's name
+}
+} 
+class TopStreamingArtists {
+	private Artist first;                 // creates the first node of type Artist
+
+public void TopStreamingArtist() { 
+		first  = null; 		             // sets the first node as null
+}
+
+public boolean isEmpty() {  
+	return (first == null);             // creating an method that returns true or false depending if the linked list is empty
+}
+
+public void insert (String name) {        // insert method that adds a new node in the beginning, making each new node the first node
+	Artist newNode = new Artist(name);  // create an object of Artist as newNode who stores the artist names
+	if (isEmpty()) {                           
+		first = newNode;                // if the linked list is empty then the first node becomes the new node
+	}
+	else { 
+		newNode.next = first;          // else the first becomes the next new node
+		first = newNode; 				// while the first node becomes the new node
+	}
+} // end of insert 
+
+} // end of TopStreamingArtists;
+
+public class StreamingArtist {
+
+	public static void main(String[] args) throws Exception {	
+		
+		  ArrayList<String> unsortedArtist = new ArrayList<String>(); // created an ArrayList of strings to sort the name of the artist 
+		  
+		  TopStreamingArtists artistNames = new TopStreamingArtists(); // created object of type TopStreamingArtists to store the sorted artist names
+		 
+		  String [][] myList = new String [74][1];                     //using an 2d array allows me to read the file and temporarily store it
+		    Scanner scanner = new Scanner(new File("USArtist.txt"));  // called the scanner object to read in the .txt file 
+		    scanner.useDelimiter(",");                              // using the scanner's useDelimiter method allows me to separate the artist names by comma
+		   
+		    while(scanner.hasNext()){                               // while loop is used to  keep reading from the file while there is still data 
+		      for (int row = 0; row < myList.length; row++) {       // using a double nested loop, I can read the file into the 2d array and keeps looping 
+		        for(int col = 0; col < myList[row].length; col++) {  // until it runs out of the array  
+		          myList[row][col] = scanner.next();                  // scanner.next(); holds the data and it's being read into the array of myList
+		          unsortedArtist.add(myList[row][col]);              // the array element is then added to the ArrayList of unsortedArtist for further processing
+		          System.out.print(myList[row][col]);               
+		        } //end of col loop
+		      } //end of row loop
+		       {
+		      }
+		    } // end of while loop
+		    
+		    Collections.sort(unsortedArtist, Collections.reverseOrder());           // Calling the sort Method of Collections, the ArrayList is then sorted alphabetically backwards Z to A.
+	          																	    // This allows for each artist name to be implemented first allowing A to be in the beginning and Z at the end.
+		    for (String counter: unsortedArtist) {
+		    	System.out.println(counter); 
+		    }
+		   
+		scanner.close();
+	} // end of main method
+}
+ // end of public class 

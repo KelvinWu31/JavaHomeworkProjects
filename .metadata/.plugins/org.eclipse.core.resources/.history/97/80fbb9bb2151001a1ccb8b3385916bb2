@@ -1,0 +1,33 @@
+import java.util.*;
+import java.io.*;
+
+public class Artist { 
+	private String name; 
+	private Artist next; 
+	
+}
+
+public class StreamingArtist {
+
+	public static void main(String[] args) throws Exception {
+		
+		  TopStreamingArtists artistNames = new TopStreamingArtists(); 
+		  artistNames [][] myList = new artistNames [74][1]; 
+			 
+		    Scanner scanner = new Scanner(new File("USArtist.txt")); 
+		    scanner.useDelimiter(",");
+		    while(scanner.hasNext()){ 
+		      for (int row = 0; row < artistNames.length; row++) {
+		        for(int col = 0; col < artistNames[row].length; col++) {    
+		          artistNames[row][col] = scanner.next();
+		          System.out.print(myList[row][col] + " "); 
+		        
+		        } //end of j loop
+		      } //end of i loop
+		    } // end of while loop
+		
+		    scanner.close();
+		
+	} // end of main method
+
+} // end of public class 
